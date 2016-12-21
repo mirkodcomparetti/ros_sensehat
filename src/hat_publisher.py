@@ -28,7 +28,10 @@ if __name__ == '__main__':
 			
 			pub_compass.publish(ros_sensehat.sensorhelper.get_compass(sense))
 			
-			pub_stick.publish(ros_sensehat.sensorhelper.get_stick(sense).direction)
+			stickEvent = ros_sensehat.sensorhelper.get_stick(sense)
+			if (stickEvent is not None):
+				pub_stick.publish(stickEvent.direction)
+			
 			rate.sleep()
 		
 		rospy.loginfo(rospy.get_caller_id() + " Quit")

@@ -18,4 +18,7 @@ def get_accelerometer(sense):
 
 def get_stick(sense):
 	stickEvents = sense.stick.get_events()
-	return stickEvents[-1]
+	if (len(stickEvents) > 0):
+		return stickEvents[-1]
+	else:
+		return None
