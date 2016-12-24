@@ -1,3 +1,5 @@
+from sense_hat import SenseHat
+
 def get_temperature(sense):
 	return sense.get_temperature()
 
@@ -18,13 +20,16 @@ def get_stick(sense):
 		return None
 
 def get_accelerometer(sense):
-	return sense.get_accelerometer()
+	return sense.get_accelerometer_raw()
 
 def get_compass(sense):
 	return sense.get_compass()
-	
+
 def get_gyroscope(sense):
-	return sense.get_gyroscope()
+	return sense.get_gyroscope_raw()
+
+def get_magnetometer(sense):
+	return sense.get_compass_raw()
 
 def get_orientation(sense):
 	return sense.get_orientation()
