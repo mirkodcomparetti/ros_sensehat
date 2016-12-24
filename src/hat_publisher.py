@@ -6,6 +6,7 @@ from std_msgs.msg import Float64
 from std_msgs.msg import String
 from sense_hat import SenseHat
 import ros_sensehat.sensorhelper
+import ros_sensehat.ledmatrixhelper
 
 if __name__ == '__main__':
 	sense = SenseHat()
@@ -16,7 +17,8 @@ if __name__ == '__main__':
 	rate = rospy.Rate(rosFrequency)
 	pub_humidity = rospy.Publisher('sensehat/humidity', Float64, queue_size=10)
 	pub_temperature = rospy.Publisher('sensehat/temperature', Float64, queue_size=10)
-	pub_pressure = rospy.Publisher('sensehat/temperature', Float64, queue_size=10)
+	pub_pressure = rospy.Publisher('sensehat/pressure', Float64, queue_size=10)
+	pub_accelerometer = rospy.Publisher('sensehat/accelerometer', Float64, queue_size=10)
 	pub_compass = rospy.Publisher('sensehat/compass', Float64, queue_size=10)
 	pub_stick = rospy.Publisher('sensehat/stick', String, queue_size=10)
 	try:
@@ -26,6 +28,7 @@ if __name__ == '__main__':
 			pub_temperature.publish(ros_sensehat.sensorhelper.get_temperature(sense))
 			pub_pressure.publish(ros_sensehat.sensorhelper.get_pressure(sense))
 			
+			pub_accelerometer.publish(ros_sensehat.sensorhelper.get_accelerometer(sense))
 			pub_compass.publish(ros_sensehat.sensorhelper.get_compass(sense))
 			
 			stickEvent = ros_sensehat.sensorhelper.get_stick(sense)
